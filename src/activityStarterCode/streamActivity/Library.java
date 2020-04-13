@@ -1,6 +1,7 @@
 package activityStarterCode.streamActivity;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
@@ -17,9 +18,30 @@ public class Library {
      * Task 1: Finds the titles of all the books by the given author
      */
     public List<String> findTitlesByAuthor(String authorName) {
+
+        return books.stream()
+                    .filter(d -> d.getAuthor().equals(authorName))
+                    .map(Book :: getTitle)
+                    .collect(Collectors.toList());
+//        for (Book d : books) {
+//            if (d.getAuthor().equals(authorName)) {
+//                result.add(d.getTitle());
+//            }
+//        }
+//        return result;
+    }
+
+    /**
+     * Task 2: Find the titles of the books with more than the given minimum number of pages.
+     */
+    public List<String> findTitlesOfLongBooks(int minPageCount) {
+//        return books.stream()
+//            .filter(d -> d.getPageCount() > minPageCount)
+//            .map(Book::getTitle)
+//            .collect(toList());
         List<String> result = new ArrayList<>();
-        for (Book d : books) {
-            if (d.getAuthor().equals(authorName)) {
+        for(Book d: books){
+            if (d.getPageCount()>minPageCount){
                 result.add(d.getTitle());
             }
         }
@@ -27,82 +49,98 @@ public class Library {
     }
 
     /**
-     * Task 2: Find the titles of the books with more than the given minimum number of pages.
-     */
-    public List<String> findTitlesOfLongBooks(int minPageCount) {
-        return books.stream()
-            .filter(d -> d.getPageCount() > minPageCount)
-            .map(Book::getTitle)
-            .collect(toList());
-    }
-
-    /**
      * Task 3: Describes the titles and authors of all the books in the given genre.
      */
     public List<String> findTitlesAndAuthorsInGenre(String genre) {
-        List<String> result = new ArrayList<>();
-        for (Book book : books) {
-            if (book.getGenres().contains(genre)) {
-                result.add(
-                    book.getTitle() + " by " + book.getAuthor());
-            }
-        }
-        return result;
+//        List<String> result = new ArrayList<>();
+//        for (Book book : books) {
+//            if (book.getGenres().contains(genre)) {
+//                result.add(
+//                    book.getTitle() + " by " + book.getAuthor());
+//            }
+//        }
+//        return result;
+
+        return books.stream()
+                .filter(d -> d.getGenres().contains(genre))
+                .map(d -> d.getTitle() + " by " + d.getAuthor())
+                .collect(Collectors.toList());
+
     }
 
     /**
      * Task 4: How many books in the given genre does the library have?
      */
     public long countBooksInGenre(String genre) {
-        long count = 0L;
-        for (Book d : books) {
-            if (d.getGenres().contains(genre)) {
-                count++;
-            }
-        }
-        return count;
+//        long count = 0L;
+//        for (Book d : books) {
+//            if (d.getGenres().contains(genre)) {
+//                count++;
+//            }
+//        }
+//        return count;
+        return books.stream()
+                .filter(d -> d.getGenres().contains(genre))
+                .count();
     }
 
     /**
      * Task 5: What are the n shortest books in the library?
      */
     public List<Book> findShortestBooks(int n) {
-        return books.stream()
-            .sorted(Comparator.comparing(Book::getPageCount))
-            .limit(n)
-            .collect(toList());
+//        return books.stream()
+//            .sorted(Comparator.comparing(Book::getPageCount))
+//            .limit(n)
+//            .collect(toList());
+        List<Book> bookList = new ArrayList<>(books);
+        bookList.sort(Comparator.comparing(Book::getPageCount));
+        return bookList.subList(0,Math.min(n, bookList.size()));
     }
 
     /**
      * Task 6: Finds all books in the given genre, sorted from shortest to longest.
      */
     public List<Book> findBooksInGenreSortedByLength(String genre) {
-        List<Book> booksToSort = new ArrayList<>();
-        for (Book book : books) {
-            if (book.getGenres().contains(genre)) {
-                booksToSort.add(book);
-            }
-        }
-        booksToSort.sort(Comparator.comparing(Book::getPageCount));
-        return booksToSort;
+//        List<Book> booksToSort = new ArrayList<>();
+//        for (Book book : books) {
+//            if (book.getGenres().contains(genre)) {
+//                booksToSort.add(book);
+//            }
+//        }
+//        booksToSort.sort(Comparator.comparing(Book::getPageCount));
+//        return booksToSort;
+        return books.stream()
+                .filter(d -> d.getGenres().contains(genre))
+                .sorted(Comparator.comparing(Book::getPageCount))
+                .collect(Collectors.toList());
     }
 
     /**
      * Task 7: What is the book with the shortest title?
      */
     public Book findBookWithShortestTitle() {
-        return books.stream()
-            .min(Comparator.comparing(title -> title.getTitle().length()))
-            .orElse(null);
+//        return books.stream()
+//            .min(Comparator.comparing(title -> title.getTitle().length()))
+//            .orElse(null);
+        int size = Integer.MAX_VALUE;
+        Book b = null;
+        for(Book d: books){
+            if (d.getTitle().length() < size){
+                size = d.getTitle().length();
+                b = d;
+            }
+        }
+        return b;
     }
 
     /**
      * Task 8: Print all books in the library to STDOUT.
      */
     public void printLibrary() {
-        for (Book book : books) {
-            System.out.println(book);
-        }
+//        for (Book book : books) {
+//            System.out.println(book);
+//        }
+        books.forEach(System.out::println);
     }
 
     // ––––––––––––  Special bonus challenges! ––––––––––––
