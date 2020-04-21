@@ -10,10 +10,20 @@ public class ArraySort {
         String[] merged = new String[newLength];
 
         for (int i = 0, ai = 0, bi = 0; i < newLength; i++) {
-            if (a[ai].compareTo(b[bi]) < 0) {
+            if(ai < a.length && bi < b.length) {
+                if (a[ai].compareToIgnoreCase(b[bi]) < 0) {
+                    merged[i] = a[ai];
+                    ai++;
+                } else {
+                    merged[i] = b[bi];
+                    bi++;
+                }
+            }
+            else if(ai < a.length){
                 merged[i] = a[ai];
                 ai++;
-            } else {
+            }
+            else if(bi < b.length){
                 merged[i] = b[bi];
                 bi++;
             }
@@ -22,7 +32,7 @@ public class ArraySort {
     }
 
     public static String[] sort(String[] a) {
-        if (a.length == 1) {
+        if (a == null ||a.length <= 1) {
             return a;
         }
 
