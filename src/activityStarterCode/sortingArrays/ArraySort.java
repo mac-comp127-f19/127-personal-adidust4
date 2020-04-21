@@ -9,6 +9,8 @@ public class ArraySort {
 
         String[] merged = new String[newLength];
 
+//comment because it won't let me commit and push
+
         for (int i = 0, ai = 0, bi = 0; i < newLength; i++) {
             if(ai < a.length && bi < b.length) {
                 if (a[ai].compareToIgnoreCase(b[bi]) < 0) {
