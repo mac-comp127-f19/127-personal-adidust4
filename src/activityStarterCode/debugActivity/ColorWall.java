@@ -17,18 +17,17 @@ public class ColorWall extends GraphicsGroup {
     private static final int STEPS = 10;
     // the total size of the art, includes the rectangles, the gap between
     // rectangles, and a border (size gap) between the window and the rectangles
-    private static final double MAX = STEPS*(GAP*SIZE)+GAP;
+    private static final double MAX = STEPS * (SIZE + BORDER + BORDER + (GAP/2));
 
     public void draw() {
         int x = 0;
         int y = 0;
 
-        for (int i = 0; i < STEPS; i++); {
-            x += (GAP + SIZE);
+        for (int i = 0; i < STEPS; i++){
+            x = (GAP + SIZE) * i + GAP;
             y = 0;
-
-            for (int j = 0; j < STEPS; j++)
-                y += (GAP + SIZE);
+            for (int j = 0; j < STEPS; j++) {
+                y = (GAP + SIZE) * j + GAP;
                 Rectangle rect = new Rectangle(x, y, SIZE, SIZE);
                 rect.setStroked(true);
                 rect.setStrokeWidth(BORDER);
@@ -36,7 +35,7 @@ public class ColorWall extends GraphicsGroup {
                 rect.setFilled(true);
                 rect.setFillColor(getColor(x, y));
                 add(rect);
-
+            }
         }
     }
 

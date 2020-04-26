@@ -12,6 +12,7 @@ import java.util.List;
 public class MacalesterLines extends GraphicsGroup {
     public void draw() {
         List<Line> lines = new ArrayList<>();
+
         Line line = new Line(0, 0, 0, 0);
 
         line.setStartPosition(-40, 0);
@@ -20,29 +21,33 @@ public class MacalesterLines extends GraphicsGroup {
         line.setStrokeWidth(60);
         lines.add(line);
 
-        line.setStartPosition(100, 40);
-        line.setEndPosition(460, 400);
-        line.setStrokeColor(new Color(0xA5002033, true));
-        line.setStrokeWidth(30);
-        lines.add(line);
+        Line line2 = new Line(0, 0, 0, 0);
+        line2.setStartPosition(100, 40);
+        line2.setEndPosition(460, 400);
+        line2.setStrokeColor(new Color(0xA5002033, true));
+        line2.setStrokeWidth(30);
+        lines.add(line2);
 
-        line.setStartPosition(100, 430);
-        line.setEndPosition(460, 70);
-        line.setStrokeColor(new Color(0xA5002033, true));
-        line.setStrokeWidth(30);
-        lines.add(line);
+        Line line3 = new Line(0, 0, 0, 0);
+        line3.setStartPosition(100, 430);
+        line3.setEndPosition(460, 70);
+        line3.setStrokeColor(new Color(0xA5002033, true));
+        line3.setStrokeWidth(30);
+        lines.add(line3);
 
-        line.setStartPosition(110, 369);
-        line.setEndPosition(470, 9);
-        line.setStrokeColor(new Color(0xA55B6770, true));
-        line.setStrokeWidth(10);
-        lines.add(line);
+        Line line4 = new Line(0, 0, 0, 0);
+        line4.setStartPosition(110, 369);
+        line4.setEndPosition(470, 9);
+        line4.setStrokeColor(new Color(0xA55B6770, true));
+        line4.setStrokeWidth(10);
+        lines.add(line4);
 
-        line.setStartPosition(0, 430);
-        line.setEndPosition(360, 70);
-        line.setStrokeColor(new Color(0xA5EF4F26, true));
-        line.setStrokeWidth(30);
-        lines.add(line);
+        Line line5 = new Line(0, 0, 0, 0);
+        line5.setStartPosition(0, 430);
+        line5.setEndPosition(360, 70);
+        line5.setStrokeColor(new Color(0xA5EF4F26, true));
+        line5.setStrokeWidth(30);
+        lines.add(line5);
 
         lines.forEach(this::add);
     }

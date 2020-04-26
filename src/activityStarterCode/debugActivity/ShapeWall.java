@@ -13,7 +13,6 @@ import java.util.List;
  * Created by dkluver on 11/17/17.
  */
 public class ShapeWall extends GraphicsGroup {
-    private List<Point> points;
 
     public void drawPoly(int nSides) {
         GraphicsText gt = new GraphicsText(Integer.toString(nSides),50,50);
@@ -27,13 +26,13 @@ public class ShapeWall extends GraphicsGroup {
     }
 
     private List<Point> generatePoints(int nSides) {
+        List<Point> points = new ArrayList<>(nSides);
         for(int i = 0; i<nSides; i++) {
-            List<Point> points = new ArrayList<>(nSides);
             // compute the angle for a given point in degrees
             double theta = (360*i)/nSides;
             // use trigonometry to compute point locations.
-            double x = 50+50* Math.sin(theta);
-            double y = 50+50* Math.cos(theta);
+            double x = 50+50* Math.sin(Math.toRadians(theta));
+            double y = 50+50* Math.cos(Math.toRadians(theta));
             // add points to the list
             points.add(new Point(x,y));
         }

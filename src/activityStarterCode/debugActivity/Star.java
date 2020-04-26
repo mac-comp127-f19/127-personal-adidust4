@@ -7,7 +7,6 @@ import comp127graphics.Point;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -30,10 +29,13 @@ public class Star extends GraphicsGroup {
     }
 
     private void translateStarPoints(List<Point> points, Point delta) {
-        for(int i = 1; i < points.size(); i++) {
-            Point p = points.get(i);
-            points.set(i, p.add(delta));
-        }
+//        for(int i = 0; i < points.size(); i++) {
+//            Point p = points.get(i);
+//            points.set(i, p.add(delta));
+//            System.out.println(p.getX() + ", " + p.getY());
+//        }
+        points.forEach(d-> setCenter(delta));
+
     }
 
     // Note: these points are all 100% correct.
